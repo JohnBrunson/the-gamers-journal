@@ -48,7 +48,7 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 |Name       | Link  |
 |-----------|-------|
 |Matt Aceves|https://github.com/mmaceves|
-|Crego Bowman|https://github.com/bowman-crego|
+|Bowman Crego|https://github.com/bowman-crego|
 |Leo Jones|https://github.com/Finnmos1|
 
 
