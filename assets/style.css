@@ -1,0 +1,97 @@
+* {
+    box-sizing: border-box;
+    
+}
+body {
+    font-family: "JetBrains Mono", monospace;
+    background-color: #f9f7f7;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+header {
+    font-family:"Jolly Lodger", system-ui ;
+    background-color: #361E6A ;
+    color: white;
+    padding: 10px;
+    text-align: left;
+    position: relative;
+}
+
+
+
+
+main {
+    font-family: "JetBrains Mono", monospace;
+    background-image: url('/img/space-background.jpeg');
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+
+}
+
+main section {
+    padding: 10px;
+    color: white;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+nav a {
+    font-family: "JetBrains Mono", monospace;
+    display: flex;
+    justify-content: right;
+    color: white;
+    align-items: center;
+    padding: 10px;
+}
+
+#games-dropdown , #title-dropdown {
+    font-family:"JetBrains Mono", monospace; ;
+    display: flex;
+    position: ;
+    background-color: #361E6A;
+    color: white;
+    padding: 10px;
+    z-index: 1;
+}
+
+
+
+
+/* header h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 1.5em;
+    font-weight: normal;
+    color: white;
+    text-align: center;
+}
+ */
+
+ footer {
+    font-family: "JetBrains Mono", monospace;;
+    background-color: #361E6A;
+    color: white;
+    text-align: left;
+    margin: 0;
+    padding: 10px;
+} 
+
+
+
+
+    
