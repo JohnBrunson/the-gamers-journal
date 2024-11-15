@@ -1,36 +1,33 @@
 * {
     box-sizing: border-box;
-    
 }
+
 body {
     font-family: "JetBrains Mono", monospace;
     background-color: #f9f7f7;
     margin: 0;
     padding: 0;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 header {
-    font-family:"Jolly Lodger", system-ui ;
-    background-color: #361E6A ;
+    font-family: "Jolly Lodger", system-ui;
+    background-color: #361E6A;
     color: white;
     padding: 10px;
     text-align: left;
     position: relative;
 }
 
-
-
-
 main {
     font-family: "JetBrains Mono", monospace;
     background-image: url('/img/space-background.jpeg');
     margin: 0;
     padding: 0;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
-
+    flex-direction: column;
 }
 
 main section {
@@ -41,11 +38,11 @@ main section {
 
 form {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     margin: 0;
-    padding: 0;
+    padding: 10px;
     width: 100%;
     background-color: rgba(0, 0, 0, .5);
 }
@@ -59,39 +56,66 @@ nav a {
     padding: 10px;
 }
 
-#games-dropdown , #title-dropdown {
-    font-family:"JetBrains Mono", monospace; ;
+#games-dropdown, #title-dropdown {
+    font-family: "JetBrains Mono", monospace;
     display: flex;
-    position: ;
     background-color: #361E6A;
     color: white;
     padding: 10px;
     z-index: 1;
 }
 
-
-
-
-/* header h1 {
-    margin: 0;
-    padding: 0;
-    font-size: 1.5em;
-    font-weight: normal;
-    color: white;
-    text-align: center;
-}
- */
-
- footer {
-    font-family: "JetBrains Mono", monospace;;
+footer {
+    font-family: "JetBrains Mono", monospace;
     background-color: #361E6A;
     color: white;
     text-align: left;
     margin: 0;
     padding: 10px;
-} 
+}
 
+@media (min-width: 600px) {
+    form {
+        flex-direction: row;
+    }
 
+    main {
+        flex-direction: row;
+    }
+}
 
+@media (min-width: 768px) {
+    header, footer {
+        padding: 20px;
+    }
 
-    
+    nav a {
+        padding: 15px;
+    }
+
+    main section {
+        padding: 20px;
+    }
+}
+
+@media (min-width: 1024px) {
+    body {
+        font-size: 1.2em;
+    }
+
+    header {
+        text-align: left;
+    }
+
+    nav a {
+        justify-content: center;
+    }
+
+    main {
+        justify-content: space-around;
+    }
+
+    form {
+        width: 100%;
+    }
+}
