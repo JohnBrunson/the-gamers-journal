@@ -21,7 +21,7 @@ header {
 
 main {
     font-family: "JetBrains Mono", monospace;
-    background-image: url('/img/space-background.jpeg');
+    background-image: url("./img/space-background.jpeg");
     margin: 0;
     padding: 0;
     min-height: 100vh;
