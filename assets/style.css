@@ -18,7 +18,9 @@ header {
     text-align: left;
     position: relative;
 }
-
+h1 {
+    font-size: 3em;
+}
 main {
     font-family: "JetBrains Mono", monospace;
     background-image: url("./img/space-background.jpeg");
@@ -50,6 +52,9 @@ form {
 nav a {
     font-family: "JetBrains Mono", monospace;
     display: flex;
+    position: absolute;
+    top: 130px;
+    right: 50px;
     justify-content: right;
     color: white;
     align-items: center;
@@ -65,6 +70,17 @@ nav a {
     z-index: 1;
 }
 
+#add-game {
+    font-family: "JetBrains Mono", monospace;
+    display: flex;
+    position: absolute;
+    left: 220px;
+    top: 100px;
+    background-color: black;
+    color: white;
+    padding: 5px;
+    z-index: 1;
+}
 footer {
     font-family: "JetBrains Mono", monospace;
     background-color: #361E6A;

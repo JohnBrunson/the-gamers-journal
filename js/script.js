@@ -68,6 +68,36 @@ const rating = document.querySelector('#game-rating');
 
     // generic function to append an element to a page
 }
+
+function createMPDataObject(event) {
+    event.preventDefault();
+    console.log("INFO: createMPDataObject was called.")
+}
+
+const mpGameTitle = document.querySelector('#mpGameTitle');
+const mpRating = document.querySelector('#mpRating');
+const mpWins = document.querySelector('#mpWins');
+const mpLosses = document.querySelector('#mpLosses');
+
+if (mpGameTitle.value === "" || mpRating.value === "" || mpWins.value === "" || mpLosses.value){
+    // return error message -- 
+    const main = document.querySelector('main');
+    const paragraphEl = domAppend('p', main)
+    paragraphEl.setAttribute('id', 'error')
+    const error = document.querySelector('#error')
+    error.textContent = "Please complete the required fields."
+}else {
+    let mPJournalEntry = {
+        mpGameTitle : mpGameTitle.value,
+        mpRating : mpRating.value,
+        mpWins : mpWins.value,
+        mpLosses : mpLosses.value
+    };
+    setLocalStorage(mPJournalEntry);
+    return mPJournalEntry;
+}
+   
+
 //MP = Multiplayer (Competitve) -- Bowman
 // function createMPDataObject {
 // //     Name of Game
