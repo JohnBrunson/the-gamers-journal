@@ -24,7 +24,7 @@ header {
 
 main {
     font-family: "JetBrains Mono", monospace;
-    background-image: url('/img/space-background.jpeg');
+    background-image: url("./img/space-background.jpeg");
     margin: 0;
     padding: 0;
     height: 100vh;
@@ -62,7 +62,6 @@ nav a {
 #games-dropdown , #title-dropdown {
     font-family:"JetBrains Mono", monospace; ;
     display: flex;
-    position: ;
     background-color: #361E6A;
     color: white;
     padding: 10px;
