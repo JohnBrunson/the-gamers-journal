@@ -51,6 +51,7 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 |Bowman Crego|https://github.com/bowman-crego|
 |Leo Jones|https://github.com/Finnmos1|
 
+- Bootstrap was used for Modal
 
 If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
 
