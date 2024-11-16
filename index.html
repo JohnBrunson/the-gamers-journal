@@ -14,12 +14,9 @@
     <header>
         <h1>The Gamer's Journal</h1>
 
-            <select name="games" id="games-dropdown">
-                <option value="" selected disabled>Games</option>
-                <option value="">League</option>
-                <option value="">Slay the Spier</option>
-                <option value="">Persona</option>
-                <option value="">Doom</option>
+            <input type="text" id="game-title" placeholder="Enter game here">
+            <select name="games" id="dropdown">
+                <option value="default">--Select a game--</option>
             </select>
             <button id="add-game" type="button">Add</button>
         <nav>
@@ -76,6 +73,7 @@
     </section>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="./assets/js/singleplayer.js"></script>
 </body>  
     <footer>
         <p>&copy; 2024 The Gamer's Journal</p>

@@ -62,7 +62,10 @@ nav a {
     padding: 10px;
 }
 
-#games-dropdown, #title-dropdown {
+#game-title {
+    margin-bottom: 10px;
+}
+#dropdown, #title-dropdown {
     font-family: "JetBrains Mono", monospace;
     display: flex;
     background-color: #361E6A;
@@ -75,8 +78,8 @@ nav a {
     font-family: "JetBrains Mono", monospace;
     display: flex;
     position: absolute;
-    left: 220px;
-    top: 100px;
+    left: 150px;
+    top: 90px;
     background-color: black;
     color: white;
     padding: 5px;
