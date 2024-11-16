@@ -135,12 +135,12 @@ if (mpGameTitle.value === "" || mpRating.value === "" || mpWins.value === "" || 
 
 // rendering -- Leo
 
-renderMPBlogPost() {
+function renderMPBlogPost() {
     const numberOfJournals = getMPLocalStorage.length;
     for (let i = 0; i > numberOfJournals; i++) {
         const main = document.querySelector('main');
         const recordDay = domAppend('div', main);
-        recordDay.setAttribute('id', 'recordDay')
+        recordDay.setAttribute('id', 'recordDay');
     }
 }
 
