@@ -14,7 +14,7 @@
     <header>
         <h1>The Gamer's Journal</h1>
 
-            <select name="games" id="games-dropdown">
+            <select name="games" id="mpGames">
                 <option value="" selected disabled>Games</option>
                 <option value="">League</option>
                 <option value="">Slay the Spier</option>
@@ -31,23 +31,52 @@
     <main>
         <section>
             <form action="">
-                <label for="game-title" id="game-title">Game title:</label>
-                <input type="text" id="game-title" name="game-title">
+                <label for="game-title" id="mpGameTitle">Game title:</label>
+                <input type="text" id="mpRating" name="game-title">
                 <label for="rating"> Rating:</label>
                 <input type="text" id="game-rating">
                 
             </form>
         </section>
         <section>
-            <form action="">
+            <form action="" id="game-stats">
                 <label for="record">Win/Loss</label>
                 <input type="text" id="stats" name="">
                 <label type="submit">Video Link:</label>
                 <input type="text" id="video-link">
-                <button type="submit">Journal</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Journal</button>
+                    <div class="modal fade" data-bs-theme="dark" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable" data-bs-theme="dark">
+                          <div class="modal-content" data-bs-theme="dark">
+                            <div class="modal-header" data-bs-theme="dark">
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">Journal</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body" data-bs-theme="dark">
+                                <!-- FIXME: DIRTY HACKY CODE -->
+                                <label for="gameNameModal">Game Title</label><br>
+                                <input type="text" name="gameNameModal" id="gameNameModal"/><br>
+                                <label for="ratingModal">Rating</label><br>
+                                <input type="text" name="ratingModal" id="ratingModal"/>
+                                <p>Have you beaten this game?</p>
+                                <input type="radio" id="gameCompletedYes" name="gameCompleted" value="yes">
+                                <label for="gameCompletedYes">Yes</label><br>
+                                <input type="radio" id="gameCompletedNo" name="gameCompleted" value="no">
+                                <label for="gameCompletedNo">No</label><br>
+                                <label for="journalEntryModal">Comments:</label>
+                                <textarea class="form-control" rows="5" id="journalEntryModal" name="Journal"></textarea>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-primary">Save</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
             </form>
     </section>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
     <footer>
         <p>&copy; 2024 The Gamer's Journal</p>
