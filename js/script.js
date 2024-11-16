@@ -75,10 +75,10 @@ const rating = document.querySelector('#game-rating');
     if (gameTitle.value === "" || rating.value === ""){
         // return error message -- 
         const main = document.querySelector('main');
-        const paragraphEl = domAppend('p', main)
-        paragraphEl.setAttribute('id', 'error')
-        const error = document.querySelector('#error')
-        error.textContent = "Please complete the required fields."
+        const paragraphEl = domAppend('p', main);
+        paragraphEl.setAttribute('id', 'error');
+        const error = document.querySelector('#error');
+        error.textContent = "Please complete the required fields.";
     } else {
         let sPJournalEntry = {
             //this first key value pair is not working. TODO: Why is that? Is it because of the dash?
@@ -107,10 +107,10 @@ const mpLosses = document.querySelector('#mpLosses');
 if (mpGameTitle.value === "" || mpRating.value === "" || mpWins.value === "" || mpLosses.value){
     // return error message -- 
     const main = document.querySelector('main');
-    const paragraphEl = domAppend('p', main)
-    paragraphEl.setAttribute('id', 'error')
-    const error = document.querySelector('#error')
-    error.textContent = "Please complete the required fields."
+    const paragraphEl = domAppend('p', main);
+    paragraphEl.setAttribute('id', 'error');
+    const error = document.querySelector('#error');
+    error.textContent = "Please complete the required fields.";
 }else {
     let mPJournalEntry = {
         mpGameTitle : mpGameTitle.value,
@@ -118,7 +118,7 @@ if (mpGameTitle.value === "" || mpRating.value === "" || mpWins.value === "" || 
         mpWins : mpWins.value,
         mpLosses : mpLosses.value
     };
-    setMPLocalStorage(mPJournalEntry);
+    // setMPLocalStorage(mPJournalEntry);
     return mPJournalEntry;
 }
    
@@ -135,13 +135,48 @@ if (mpGameTitle.value === "" || mpRating.value === "" || mpWins.value === "" || 
 
 // rendering -- Leo
 
-function renderMPBlogPost() {
-    const numberOfJournals = getMPLocalStorage.length;
+/*
+game info
+    // 0
+    let mPJournalEntry = {
+    mpGameTitle : mpGameTitle.value,
+    mpRating : mpRating.value,
+    mpWins : mpWins.value,
+    mpLosses : mpLosses.value
+};
+    // 1
+    let mPJournalEntry = {
+    mpGameTitle : mpGameTitle.value,
+    mpRating : mpRating.value,
+    mpWins : mpWins.value,
+    mpLosses : mpLosses.value
+};
+*/
+function checkGameTitleMP(gameTitle) {
+    const journalInfo = getMPLocalStorage();
+    const numberOfJournals = gameInfo.length;
+
     for (let i = 0; i > numberOfJournals; i++) {
-        const main = document.querySelector('main');
-        const recordDay = domAppend('div', main);
-        recordDay.setAttribute('id', 'recordDay');
+        if (gameTitle === gameInfo('mpGameTitle')) {
+                renderJournalEntry(journalInfo(i));
+            }
+        }
     }
+
+function renderJournalEntry(journalEntry) {
+    console.log("Considered journalEntry same with gameTitle", journalEntry);
+
+    const main = document.querySelector('main');
+    const journalDate = domAppend('div', main);
+    journalDate.setAttribute('class', 'journalDate');
+
+    const rating = domAppend('p', main);
+    const wins = domAppend('p', main);
+    const losses = domAppend('p', main);
+
+    rating.textContent = journalEntry.mpRating;
+    wins.textContent = journalEntry.mpWins;
+    losses.textContent = journalEntry.mpLosses;
 }
 
 //TODO: Change the event listener. This is simply to test the function
