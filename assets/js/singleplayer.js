@@ -56,3 +56,20 @@ const rating = document.querySelector('#game-rating');
 //TODO: Change the event listener. This is simply to test the function
 let submitBtn = document.querySelector('#game-form')
 submitBtn.addEventListener('submit', createSPDataObject)
+
+//Add button to dropdown menu
+const addGameBtn = document.querySelector('#add-game');
+const gameTitle = document.querySelector('#game-title');
+function addGame() {
+    
+    if (gameTitle.value !== "") {
+        const dropdown = document.querySelector('#dropdown');
+        const newGame = document.createElement('option');
+        newGame.textContent = gameTitle.value;
+        dropdown.appendChild(newGame);
+        document.querySelector('#game-title').value = "";
+    } else {
+        alert("Please enter a game title.")
+    }
+}
+    addGameBtn.addEventListener('click', addGame);
