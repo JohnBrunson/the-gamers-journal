@@ -7,26 +7,51 @@ alert("script.js is attached correctly");
  * Values: Key - The value taken from storage
 */
 // JB Note: I've removed key from the argument. While I understand it's suppose to pass in a key... I'm not sure that's entirely working.
-function getLocalStorage(key) {
+function getSPLocalStorage() {
     //replaced key with hard coded 'items' value for single player. If we need to split SP/MP journal entries, we may need to split off SP/MP keys. Leo, can you think of a better way? Maybe object creation function returns a key somehow?
-    let journalEntry = JSON.parse(localStorage.getItem('items'));
+    let journalEntry = JSON.parse(localStorage.getItem('sPItems'));
     if (journalEntry === null) {
         return [];
     }
     return journalEntry;
 }
 
-function setLocalStorage(item) {
+function setSPLocalStorage(item) {
     // Has no fail safe for NULL values
     //JB: There should be a check on SP to prevent blank items from being entered. Depending on how many more key/value pairs there are it may be best to split that off into a different function
     // check to see if local storage already has data.
-    let items = getLocalStorage();
+    let items = getSPLocalStorage();
     //push new item to items
     items.push(item);
     //save data to local storage after stringifying it.
-    localStorage.setItem('items', JSON.stringify(items));
+    localStorage.setItem('sPItems', JSON.stringify(items));
 }
 
+/** 
+ * GetLocalStorage
+ * Gets key from local storage
+ * Values: Key - The value taken from storage
+*/
+// JB Note: I've removed key from the argument. While I understand it's suppose to pass in a key... I'm not sure that's entirely working.
+function getMPLocalStorage() {
+    //replaced key with hard coded 'items' value for single player. If we need to split SP/MP journal entries, we may need to split off SP/MP keys. Leo, can you think of a better way? Maybe object creation function returns a key somehow?
+    let journalEntry = JSON.parse(localStorage.getItem('mPitems'));
+    if (journalEntry === null) {
+        return [];
+    }
+    return journalEntry;
+}
+
+function setMPLocalStorage(item) {
+    // Has no fail safe for NULL values
+    //JB: There should be a check on MP to prevent blank items from being entered. Depending on how many more key/value pairs there are it may be best to split that off into a different function
+    // check to see if local storage already has data.
+    let items = getMPLocalStorage();
+    //push new item to items
+    items.push(item);
+    //save data to local storage after stringifying it.
+    localStorage.setItem('mPitems', JSON.stringify(items));
+}
 
 function domAppend(el, parent) {
     //append item to DOM using two arguments
@@ -61,7 +86,7 @@ const rating = document.querySelector('#game-rating');
             rating : rating.value
             //There will be more here. Feel free to add more key/value pairs
         };
-        setLocalStorage(sPJournalEntry);
+        setSPLocalStorage(sPJournalEntry);
         return sPJournalEntry;
     }
 
@@ -93,7 +118,7 @@ if (mpGameTitle.value === "" || mpRating.value === "" || mpWins.value === "" || 
         mpWins : mpWins.value,
         mpLosses : mpLosses.value
     };
-    setLocalStorage(mPJournalEntry);
+    setMPLocalStorage(mPJournalEntry);
     return mPJournalEntry;
 }
    
@@ -109,6 +134,15 @@ if (mpGameTitle.value === "" || mpRating.value === "" || mpWins.value === "" || 
 // }
 
 // rendering -- Leo
+
+renderMPBlogPost() {
+    const numberOfJournals = getMPLocalStorage.length;
+    for (let i = 0; i > numberOfJournals; i++) {
+        const main = document.querySelector('main');
+        const recordDay = domAppend('div', main);
+        recordDay.setAttribute('id', 'recordDay')
+    }
+}
 
 //TODO: Change the event listener. This is simply to test the function
 let submitBtn = document.querySelector('#game-form')
