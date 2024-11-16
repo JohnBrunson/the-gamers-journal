@@ -23,7 +23,7 @@ h1 {
 }
 main {
     font-family: "JetBrains Mono", monospace;
-    background-image: url("./img/space-background.jpeg");
+    background-image: url("./img/space-background.png");
     margin: 0;
     padding: 0;
     min-height: 100vh;
@@ -36,6 +36,7 @@ main section {
     padding: 10px;
     color: white;
     align-items: center;
+    
 }
 
 form {
