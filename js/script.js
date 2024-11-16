@@ -136,12 +136,17 @@ if (mpGameTitle.value === "" || mpRating.value === "" || mpWins.value === "" || 
 // rendering -- Leo
 
 renderMPBlogPost() {
+<<<<<<< Updated upstream
     const numberOfJournals = getMPLocalStorage.length;
     for (let i = 0; i > numberOfJournals; i++) {
         const main = document.querySelector('main');
         const recordDay = domAppend('div', main);
         recordDay.setAttribute('id', 'recordDay')
     }
+=======
+    numberOfJournals = getMPLocalStorage.getI
+    for (let i = 0; i > getMPLocalStorage)
+>>>>>>> Stashed changes
 }
 
 //TODO: Change the event listener. This is simply to test the function
