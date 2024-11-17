@@ -85,7 +85,7 @@ saveBtn.addEventListener('submit', createSPDataObject)
 
 //Add button to dropdown menu
 const addGameBtn = document.querySelector('#add-game');
-const gameTitle = document.querySelector('#gametitle');
+const gameTitle = document.querySelector('#gameTitle');
 function addGame() {
     
     if (gameTitle.value !== "") {
@@ -94,6 +94,7 @@ function addGame() {
         const spGameTitle = document.querySelector('#spGameTitle')
         newGame.textContent = gameTitle.value;
         dropdown.appendChild(newGame);
+        document.querySelector('#gameTitle').value = "";
         document.querySelector('#spGameTitle').value = "";
         //JB Additions: Future development, perhaps or code cleanup.
         return spGameTitle;

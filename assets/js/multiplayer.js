@@ -77,7 +77,7 @@ function renderMPBlogPost() {
 
 //Add button to dropdown menu
 const addGameBtn = document.querySelector('#add-game');
-const gameTitle = document.querySelector('#game-title');
+const gameTitle = document.querySelector('#gameTitle');
 function addGame() {
     
     if (gameTitle.value !== "") {
@@ -85,7 +85,7 @@ function addGame() {
         const newGame = document.createElement('option');
         newGame.textContent = gameTitle.value;
         dropdown.appendChild(newGame);
-        document.querySelector('#game-title').value = "";
+        document.querySelector('#gameTitle').value = "";
     } else {
         alert("Please enter a game title.")
     }
