@@ -1,21 +1,52 @@
+//On Load, check the local storage for existing games.
+window.addEventListener("load", (event) => {
+    // This may need to be its own separate function. For MVP, it's fine.
+    let spGames = getSPLocalStorage();
+    const dropdown = document.querySelector('#dropdown');
+    let spGameTitleList;
+    let spGameTitleListInterim = [];
+    if (spGames.length === 0) {
+        console.log("INFO: No Games Found. Add some to help this application achieve glorious domination!")
+    }else {
+        //Collect all the game titles
+        for (i = 0; i < spGames.length; i++){
+            spGameTitleListInterim.push(spGames[i].gameTitle);
+            //run a duplicate check
+            //Effectively, it appears any set MUST have unique values. Converting the array to a set and then back again removes the duplicates.
+            spGameTitleList = [... new Set(spGameTitleListInterim)];
+        }
+        //render to the game list. This may need to be its own separate function. For MVP, it's probably fine.
+        if (spGames.length === 0){
+            console.log("INFO: No Games Found. Add some to help this application achieve glorious domination!")
+        }else {
+            for (i = 0; i < spGameTitleList.length; i++){
+                const spGame = document.createElement('option')
+                spGame.textContent = spGameTitleList[i];
+                console.log (`INFO: spGame.textContent: ${spGame.textContent} should render to the screen`)
+                dropdown.appendChild(spGame);
+                spGame.setAttribute('id', `localstorage${i}`)
+        }
+
+        }
+    }
+})
+
 function getSPLocalStorage() {
-    //replaced key with hard coded 'items' value for single player. If we need to split SP/MP journal entries, we may need to split off SP/MP keys. Leo, can you think of a better way? Maybe object creation function returns a key somehow?
-    let journalEntry = JSON.parse(localStorage.getItem('sPItems'));
-    if (journalEntry === null) {
+
+    let spGames = JSON.parse(localStorage.getItem('spGames'));
+    if (!spGames) {
+        console.log ("INFO: No SP Games Found, should return empty array.")
         return [];
     }
-    return journalEntry;
+    return spGames;
 }
 
-function setSPLocalStorage(item) {
-    // Has no fail safe for NULL values
-    //JB: There should be a check on SP to prevent blank items from being entered. Depending on how many more key/value pairs there are it may be best to split that off into a different function
-    // check to see if local storage already has data.
-    let items = getSPLocalStorage();
+function setSPLocalStorage(spGame) {
+    let spGames = getSPLocalStorage();
     //push new item to items
-    items.push(item);
+    spGames.push(spGame);
     //save data to local storage after stringifying it.
-    localStorage.setItem('sPItems', JSON.stringify(items));
+    localStorage.setItem('spGames', JSON.stringify(spGames));
 }
 function domAppend(el, parent) {
     //append item to DOM using two arguments
@@ -27,49 +58,47 @@ function domAppend(el, parent) {
 function createSPDataObject(event) {
     event.preventDefault();
     console.log("INFO: createSPDataObject was called.")
-// This function takes input from the modal, creates and object and passes the information to setLocalStorage
-    // Setup query selectors
-const gameTitle = document.querySelector('#game-title');
-const rating = document.querySelector('#game-rating');
-//Placeholder for completed (boolean)
-//Placeholder for Prompt
-//Placeholder for other data that might come up?
-    if (gameTitle.value === "" || rating.value === ""){
-        // return error message -- 
-        const main = document.querySelector('main');
-        const paragraphEl = domAppend('p', main)
+    if (spGameTitleModal.value === "" || spGameRatingModal.value === ""){
+        // return error message on the modal
+        const modalBody = document.querySelector('#modal-body');
+        const paragraphEl = domAppend('p', modalBody)
         paragraphEl.setAttribute('id', 'error')
         const error = document.querySelector('#error')
         error.textContent = "Please complete the required fields."
     } else {
-        let sPJournalEntry = {
-            //this first key value pair is not working. TODO: Why is that? Is it because of the dash?
-            gameTitle : gameTitle.value,
-            rating : rating.value
-            //There will be more here. Feel free to add more key/value pairs
+        let spGame = {
+            gameTitle : spGameTitleModal.value,
+            rating : spGameRatingModal.value,
+            // TODO: how do I get the value of a radio button? It should go here.
+            comments : spGameComments.value
         };
-        setSPLocalStorage(sPJournalEntry);
-        return sPJournalEntry;
+        setSPLocalStorage(spGame);
+        //simply made available for future development if needed.
+        return spGame;
     }
 }
 
-//TODO: Change the event listener. This is simply to test the function
-let submitBtn = document.querySelector('#game-form')
-submitBtn.addEventListener('submit', createSPDataObject)
+
+//This is tied to the Modal Save button now.
+let saveBtn = document.querySelector('#spGameForm')
+saveBtn.addEventListener('submit', createSPDataObject)
 
 //Add button to dropdown menu
 const addGameBtn = document.querySelector('#add-game');
-const gameTitle = document.querySelector('#game-title');
+const gameTitle = document.querySelector('#gametitle');
 function addGame() {
     
     if (gameTitle.value !== "") {
         const dropdown = document.querySelector('#dropdown');
         const newGame = document.createElement('option');
+        const spGameTitle = document.querySelector('#spGameTitle')
         newGame.textContent = gameTitle.value;
         dropdown.appendChild(newGame);
-        document.querySelector('#game-title').value = "";
+        document.querySelector('#spGameTitle').value = "";
+        //JB Additions: Future development, perhaps or code cleanup.
+        return spGameTitle;
     } else {
         alert("Please enter a game title.")
     }
 }
-    addGameBtn.addEventListener('click', addGame);
+    addGameBtn.addEventListener('click', addGame); 
