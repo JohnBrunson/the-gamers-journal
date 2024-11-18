@@ -66,10 +66,17 @@ function createSPDataObject(event) {
         const error = document.querySelector('#error')
         error.textContent = "Please complete the required fields."
     } else {
+        const spGameTitleModal = document.querySelector('#spGameTitleModal');
+        const spDateModal = document.querySelector('#spDateModal');
+        const spGameRatingModal = document.querySelector('#spGameRatingModal');
+        const spGameComments = document.querySelector('#spGameComments');
+        //This is the best option available to ensure ease of reading. If the ':checked' is not added, then by default system will grab whatever the first value is.
+        const spGameCompleted = document.querySelector('input[name="spGameCompleted"]:checked');
         let spGame = {
             gameTitle : spGameTitleModal.value,
+            date : spDateModal.value,
             rating : spGameRatingModal.value,
-            // TODO: how do I get the value of a radio button? It should go here.
+            completed : spGameCompleted.value,
             comments : spGameComments.value
         };
         setSPLocalStorage(spGame);
