@@ -1,22 +1,52 @@
+// Yoinking to test info
+window.addEventListener("load", (event) => {
+    let mpGames = getMPLocalStorage();
+    const dropdown = document.querySelector('#dropdown');
+    let mpGameTitleList;
+    let mpGameTitleListInterim = [];
+    if (mpGames.length === 0) {
+        console.log("INFO: No Games Found. Add some to help this application achieve glorious domination!")
+    }else {
+        //Collect all the game titles
+        for (i = 0; i < mpGames.length; i++){
+            mpGameTitleListInterim.push(mpGames[i].gameTitle);
+            //run a duplicate check
+            //Effectively, it appears any set MUST have unique values. Converting the array to a set and then back again removes the duplicates.
+            mpGameTitleList = [... new Set(mpGameTitleListInterim)];
+        }
+        //render to the game list. This may need to be its own separate function. For MVP, it's probably fine.
+        if (mpGames.length === 0){
+            console.log("INFO: No Games Found. Add some to help this application achieve glorious domination!")
+        }else {
+            for (i = 0; i < mpGameTitleList.length; i++){
+                const mpGame = document.createElement('option')
+                mpGame.textContent = mpGameTitleList[i];
+                console.log (`INFO: mpGame.textContent: ${mpGame.textContent} should render to the screen`)
+                dropdown.appendChild(mpGame);
+                mpGame.setAttribute('id', `localstorage${i}`)
+        }
+
+        }
+    }
+})
+
 function getMPLocalStorage() {
-    //replaced key with hard coded 'items' value for single player. If we need to split SP/MP journal entries, we may need to split off SP/MP keys. Leo, can you think of a better way? Maybe object creation function returns a key somehow?
-    let journalEntry = JSON.parse(localStorage.getItem('mPitems'));
-    if (journalEntry === null) {
+    let mpGames = JSON.parse(localStorage.getItem('spGames'));
+    if (!spGames) {
+        console.log ("INFO: No SP Games Found, should return empty array.")
         return [];
     }
-    return journalEntry;
+    return mpGames;
 }
 
 function setMPLocalStorage(item) {
-    // Has no fail safe for NULL values
-    //JB: There should be a check on MP to prevent blank items from being entered. Depending on how many more key/value pairs there are it may be best to split that off into a different function
-    // check to see if local storage already has data.
     let items = getMPLocalStorage();
     //push new item to items
     items.push(item);
     //save data to local storage after stringifying it.
     localStorage.setItem('mPitems', JSON.stringify(items));
 }
+
 function domAppend(el, parent) {
     //append item to DOM using two arguments
     const element = document.createElement(el);
