@@ -85,10 +85,21 @@ function createSPDataObject(event) {
     }
 }
 
+function articleGarbageCleanup() {
+    const article = document.querySelector('article');
+    if (!article){
+        console.log ("No Articles Found")
+    }
+    else{
+        article.remove();
+    }
+
+}
 // this doesn't clean up after itself
 //CSS doesn't stack correctly.
 function renderSPJournalEntries () {
-
+    // effectively, a check needs to happen if an article is rendered. If there is, clean it up. If not, proceed.
+    articleGarbageCleanup();
     const spGames = getSPLocalStorage();
     if (dropdown.value === "default"){
         console.log('INFO:No Game Selected')
@@ -106,12 +117,12 @@ function renderSPJournalEntries () {
         spMatchingEntries.forEach(entry => {
             const main = document.querySelector('main')
             //setup a div
-            const div = domAppend('div', main)
-            div.classList.add('container', 'mb-4')
+           // const div = domAppend('div', main)
+            //div.classList.add('container', 'mb-4')
             //assign div ID of blogentry + i
-            div.setAttribute('id', `blogEntry${i}`)
+           // div.setAttribute('id', `blogEntry${i}`)
             //setup the article and append
-            const article = domAppend('article', div);
+            const article = domAppend('article', main);
             //setup the h2 and append to article. From a semantic standpoint, this could be argued to be date time. Not sure If I have enough time to hammer that out here... prior to deadline
             const h2 = domAppend('h2', article);
             h2.textContent = entry.date;
@@ -120,6 +131,7 @@ function renderSPJournalEntries () {
             p.textContent = entry.comments;
             //adding bootstrap container
             article.classList.add('p-3')
+            renderedSPJournalEntriesExist = true;
             })
         }
     }
