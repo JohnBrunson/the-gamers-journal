@@ -70,7 +70,7 @@ function createSPDataObject(event) {
         const spDateModal = document.querySelector('#spDateModal');
         const spGameRatingModal = document.querySelector('#spGameRatingModal');
         const spGameComments = document.querySelector('#spGameComments');
-        //This is the best option available to ensure ease of reading. If the ':checked' is not added, then by default system will grab whatever the first value is.
+        //This is the best option available to ensure ease of reading. If the ':checked' is not added, then by default querySelector will grab whatever the first value is.
         const spGameCompleted = document.querySelector('input[name="spGameCompleted"]:checked');
         let spGame = {
             gameTitle : spGameTitleModal.value,
@@ -82,6 +82,46 @@ function createSPDataObject(event) {
         setSPLocalStorage(spGame);
         //simply made available for future development if needed.
         return spGame;
+    }
+}
+
+// this doesn't clean up after itself
+//CSS doesn't stack correctly.
+function renderSPJournalEntries () {
+
+    const spGames = getSPLocalStorage();
+    if (dropdown.value === "default"){
+        console.log('INFO:No Game Selected')
+    } else{
+        for (i=0; i < spGames.length; i++){
+            const spMatchingEntries = []
+            //if the dropdown matches the title in the list, 
+            if (dropdown.value === spGames[i].gameTitle){
+                spMatchingEntries.push(spGames[i])
+                //access the data by rendering it by item
+            }
+       //rendering
+            //spGameTitle.value = spGames[i].gameTitle;
+            //spGameRating.value = spGames[i].rating;
+        spMatchingEntries.forEach(entry => {
+            const main = document.querySelector('main')
+            //setup a div
+            const div = domAppend('div', main)
+            div.classList.add('container', 'mb-4')
+            //assign div ID of blogentry + i
+            div.setAttribute('id', `blogEntry${i}`)
+            //setup the article and append
+            const article = domAppend('article', div);
+            //setup the h2 and append to article. From a semantic standpoint, this could be argued to be date time. Not sure If I have enough time to hammer that out here... prior to deadline
+            const h2 = domAppend('h2', article);
+            h2.textContent = entry.date;
+            //setup the paragraph and append to h2
+            const p = domAppend('p', article);
+            p.textContent = entry.comments;
+            //adding bootstrap container
+            article.classList.add('p-3')
+            })
+        }
     }
 }
 
@@ -110,3 +150,7 @@ function addGame() {
     }
 }
     addGameBtn.addEventListener('click', addGame); 
+
+//Important to leave parenthesis off for this, otherwise, event handler doesn't call it, we do. That's not what we want here. This will call every time the value of the dropdown changes. renderSP Journal Entries could be called onLoad if we decided to get rid of default value of "--Select a Game--"
+const dropdown = document.querySelector('#dropdown');
+dropdown.addEventListener('change', renderSPJournalEntries);
