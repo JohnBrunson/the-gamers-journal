@@ -58,7 +58,7 @@ function domAppend(el, parent) {
 function createSPDataObject(event) {
     event.preventDefault();
     console.log("INFO: createSPDataObject was called.")
-    if (spGameTitleModal.value === "" || spGameRatingModal.value === ""){
+    if (spGameTitleModal.value === "" || spGameRatingModal.value === ""||spDateModal.value === ""||spGameComments.value === ""){
         // return error message on the modal
         const modalBody = document.querySelector('#modal-body');
         const paragraphEl = domAppend('p', modalBody)
@@ -112,11 +112,15 @@ function renderSPJournalEntries () {
                 //access the data by rendering it by item
             }
        //rendering
-            //spGameTitle.value = spGames[i].gameTitle;
-            //spGameRating.value = spGames[i].rating;
+       if (spMatchingEntries.length > 0){
+        const spGameTitle = document.querySelector('#spGameTitle')
+        const spGameRating = document.querySelector('#spGameRating')
+        spGameTitle.value = spMatchingEntries[0].gameTitle;
+        spGameRating.value = spMatchingEntries[0].rating;
+    }
         spMatchingEntries.forEach(entry => {
             const main = document.querySelector('main')
-            //setup a div
+            //setup a div Not used, but keeping this code in case automatically assigning an id is needed.
            // const div = domAppend('div', main)
             //div.classList.add('container', 'mb-4')
             //assign div ID of blogentry + i
@@ -130,9 +134,10 @@ function renderSPJournalEntries () {
             const p = domAppend('p', article);
             p.textContent = entry.comments;
             //adding bootstrap container
-            article.classList.add('p-3')
-            renderedSPJournalEntriesExist = true;
-            })
+            article.classList.add('container', 'col-md-6')
+        //IDEA: Maybe have everything attach to its own section, then hammer out how that should appear?
+
+            })            
         }
     }
 }
@@ -146,7 +151,7 @@ saveBtn.addEventListener('submit', createSPDataObject)
 const addGameBtn = document.querySelector('#add-game');
 const gameTitle = document.querySelector('#gameTitle');
 function addGame() {
-    
+    //should probably be a check here if the game is in storage. If it is, call the modal with that title populated. That or ax the add button.
     if (gameTitle.value !== "") {
         const dropdown = document.querySelector('#dropdown');
         const newGame = document.createElement('option');
@@ -155,6 +160,7 @@ function addGame() {
         dropdown.appendChild(newGame);
         document.querySelector('#gameTitle').value = "";
         document.querySelector('#spGameTitle').value = "";
+        
         //JB Additions: Future development, perhaps or code cleanup.
         return spGameTitle;
     } else {
