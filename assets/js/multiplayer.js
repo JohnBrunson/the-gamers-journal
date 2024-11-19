@@ -6,7 +6,7 @@ window.addEventListener("load", (event) => {
     let gameTitleList;
     let gameTitleListInterim = [];
     if (games.length === 0) {
-        console.log("!!INFO: No Games Found. Add some to help this application achieve glorious domination!")
+        console.log("INFO: No Games Found. Add some to help this application achieve glorious domination!")
     }else {
         //Collect all the game titles
         for (i = 0; i < games.length; i++){
@@ -17,7 +17,7 @@ window.addEventListener("load", (event) => {
         }
         //render to the game list. This may need to be its own separate function. For MVP, it's probably fine.
         if (games.length === 0){
-            console.log("?INFO: No Games Found. Add some to help this application achieve glorious domination!")
+            console.log("INFO: No Games Found. Add some to help this application achieve glorious domination!")
         }else {
             for (i = 0; i < gameTitleList.length; i++){
                 const game = document.createElement('option')
@@ -69,21 +69,21 @@ function createDataObject(event) {
         const gameTitle = document.querySelector('#gameTitleModal');
         const gameRating = document.querySelector('#gameRatingModal');
         const date = document.querySelector("#dateModal");
-        const wins = document.querySelector('#winsModal');
-        const losses = document.querySelector('#lossesModal');
+        const win = document.querySelector('#winModal');
+        const loss = document.querySelector('#lossModal');
         const rank = document.querySelector('#rankModal');
         const video = document.querySelector('#videoModal');
-        const comments = document.querySelector('#commentsModal');
+        const comment = document.querySelector('#commentModal');
 
         let journalEntry = {
             gameTitle : gameTitle.value,
             gameRating : gameRating.value,
             date : date.value,
-            wins : wins.value,
-            losses : losses.value,
+            win : win.value,
+            loss : loss.value,
             rank : rank.value,
             video : video.value,
-            comments : comments.value
+            comment : comment.value
         };
         setLocalStorage(journalEntry);
         return journalEntry;
@@ -103,11 +103,10 @@ function articleGarbageCleanup() {
 function renderJournalEntry(journalEntry) {
     const main = document.querySelector('main');
     const article = domAppend('article', main);
-    const h2 = domAppend('h2', article);
-    h2.textContent = journalEntry.date;
-    console.log(journalEntry);
-    const p = domAppend('p', article);
-    p.textContent = journalEntry.comments;
+    const date = domAppend('h2', article);
+    date.textContent = journalEntry.date;
+    const comment = domAppend('p', article);
+    comment.textContent = journalEntry.comments;
     article.classList.add('container', 'col-md-6');
 }
 
