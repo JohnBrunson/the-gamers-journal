@@ -101,12 +101,19 @@ function articleGarbageCleanup() {
 }
 
 function renderJournalEntry(journalEntry) {
+    console.log(journalEntry);
     const main = document.querySelector('main');
     const article = domAppend('article', main);
     const date = domAppend('h2', article);
-    date.textContent = journalEntry.date;
+    date.textContent = "Date: " + journalEntry.date;
+    const winLoss = domAppend('h5', article);
+    winLoss.textContent = "Wins/Loss: " + journalEntry.win + "/" + journalEntry.loss;
+    const rank = domAppend('h5', article);
+    rank.textContent = "rank: " + journalEntry.rank;
+    const video = domAppend('h5', article);
+    video.textContent = "video: " + journalEntry.video;
     const comment = domAppend('p', article);
-    comment.textContent = journalEntry.comments;
+    comment.textContent = "comment: " + journalEntry.comment;
     article.classList.add('container', 'col-md-6');
 }
 
