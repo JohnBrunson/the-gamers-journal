@@ -27,20 +27,16 @@
     </header>
     <main>
         <section>
-            <form action="">
-                <label for="game-title" id="mpGameTitle">Game title:</label>
-                <input type="text" id="mpRating" name="game-title">
-                <label for="rating"> Rating:</label>
-                <input type="text" id="game-rating">
-                
-            </form>
-        </section>
-        <section>
-            <form action="" id="game-stats">
-                <label for="record">Win/Loss</label>
+            <form action="" id="gameForm">
+                <label for="gameTitle" id="gameTitle">Game title:</label>
+                <input type="text" id="rating" name="gameTitle">
+                <label for="gameRating"> Rating:</label>
+                <input type="text" id="gameRating">
+            <!-- <form action="" id="game-stats"> -->
+                <!-- <label for="record">Win/Loss</label>
                 <input type="text" id="stats" name="">
                 <label type="submit">Video Link:</label>
-                <input type="text" id="video-link">
+                <input type="text" id="video-link"> -->
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Journal</button>
                     <div class="modal fade" data-bs-theme="dark" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-scrollable" data-bs-theme="dark">
@@ -51,27 +47,36 @@
                             </div>
                             <div class="modal-body" data-bs-theme="dark">
                                 <!-- FIXME: DIRTY HACKY CODE -->
-                                <label for="gameNameModal">Game Title</label><br>
-                                <input type="text" name="gameNameModal" id="gameNameModal"/><br>
-                                <label for="ratingModal">Rating</label><br>
-                                <input type="text" name="ratingModal" id="ratingModal"/>
-                                <p>Have you beaten this game?</p>
-                                <input type="radio" id="gameCompletedYes" name="gameCompleted" value="yes">
-                                <label for="gameCompletedYes">Yes</label><br>
-                                <input type="radio" id="gameCompletedNo" name="gameCompleted" value="no">
-                                <label for="gameCompletedNo">No</label><br>
-                                <label for="journalEntryModal">Comments:</label>
-                                <textarea class="form-control" rows="5" id="journalEntryModal" name="Journal"></textarea>
+                                <p>All Fields are required.</p>
+                                <label for="gameTitleModal">Game Title</label><br>
+                                <input type="text" name="gameTitleModal" id="gameTitleModal"/><br>
+                                <label for="dateModal">Journal Entry Date:</label><br>
+                                <input type="date" name="dateModal" id="dateModal"/><br>
+                                <label for ="gameRatingModal">Rating (*/5)</label><br>
+                                <input type="number" id="gameRatingModal" name="gameRatingModal" min="1" max="5"/><br>
+                                <label for="winsModal">Wins</label><br>
+                                <input type="number" name="winsModal" id="winsModal"/><br>
+                                <label for ="lossesModal">Losses</label><br>
+                                <input type="number" id="lossesModal" name="lossesModal"/><br>
+                                <label for ="rankModal">Rank Points (RP/LP)</label><br>
+                                <input type="number" id="rankModal" name="rankModal"/><br>
+                                <label for ="lossesModal">Video Link</label><br>
+                                <input type="text" id="videoModal" name="videoModal"/><br>
+                                <label for="commentsModal">Comments:</label>
+                                <textarea class="form-control" rows="5" id="commentsModal" name="commentsModal"></textarea>
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-primary">Save</button>
+                              <button type="submit" class="btn btn-primary" id ="saveButton">Save</button>
                             </div>
                           </div>
                         </div>
                       </div>
+                    </section>
             </form>
-    </section>
+            <section id="journalEntries">
+
+            </section>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="./assets/js/multiplayer.js"></script>
