@@ -6,7 +6,7 @@ window.addEventListener("load", (event) => {
     let gameTitleList;
     let gameTitleListInterim = [];
     if (games.length === 0) {
-        console.log("INFO: No Games Found. Add some to help this application achieve glorious domination!")
+        console.log("!!INFO: No Games Found. Add some to help this application achieve glorious domination!")
     }else {
         //Collect all the game titles
         for (i = 0; i < games.length; i++){
@@ -17,7 +17,7 @@ window.addEventListener("load", (event) => {
         }
         //render to the game list. This may need to be its own separate function. For MVP, it's probably fine.
         if (games.length === 0){
-            console.log("INFO: No Games Found. Add some to help this application achieve glorious domination!")
+            console.log("?INFO: No Games Found. Add some to help this application achieve glorious domination!")
         }else {
             for (i = 0; i < gameTitleList.length; i++){
                 const game = document.createElement('option')
@@ -40,32 +40,31 @@ function getLocalStorage() {
     return games;
 }
 
-function setLocalStorage(item) {
-    let items = getLocalStorage();
+function setLocalStorage(game) {
+    let games = getLocalStorage();
     //push new item to items
-    items.push(item);
+    games.push(game);
     //save data to local storage after stringifying it.
-    localStorage.setItem('items', JSON.stringify(items));
+    localStorage.setItem('games', JSON.stringify(games));
 }
 
 function domAppend(el, parent) {
     //append item to DOM using two arguments
     const element = document.createElement(el);
     parent.appendChild(element);
-    return element
+    return element;
 }
-
 
 function createDataObject(event) {
     event.preventDefault();
-    console.log("INFO: createDataObject was called.")
+    console.log("INFO: createDataObject was called.");
     
     if (gameTitleModal.value === "" || gameRatingModal.value === ""){ 
         const main = document.querySelector('#modal-body');
-        const paragraphEl = domAppend('p', modalBody)
-        paragraphEl.setAttribute('id', 'error')
-        const error = document.querySelector('#error')
-        error.textContent = "Please complete the required fields."
+        const paragraphEl = domAppend('p', modalBody);
+        paragraphEl.setAttribute('id', 'error');
+        const error = document.querySelector('#error');
+        error.textContent = ("Please complete the required fields.");
     }else {
         const gameTitle = document.querySelector('#gameTitleModal');
         const gameRating = document.querySelector('#gameRatingModal');
@@ -87,17 +86,12 @@ function createDataObject(event) {
 }
 
 function renderJournalEntry(journalEntry) {
-    // const gameTitle = document.querySelector('#gameTitle');
-    // const gameRating = document.querySelector('#gameRating');
-    // gameTitle.value = journalEntry.gameTitle;
-    // gameRating = journalEntry.gameRating;
-    const entry = document.getElementById("journalEntries");
-    const div = document.createElement("div");
-    const gameTitle = document.createTextNode(journalEntry.gameTitle);
-    const gameRating = document.createTextNode(journalEntry.gameRating);
-    div.appendChild(gameTitle);
-    div.appendChild(gameRating);
-    entry.append(div);
+    const section = document.getElementById("journalEntries");
+    const div = domAppend('div', section);
+    const gameTitle = domAppend('p', div);
+    gameTitle.textContent = journalEntry.gameTitle;
+    const gameRating = domAppend('p', div);
+    gameRating.textContent = journalEntry.gameRating;
 }
 
 function renderJournalEntries() {
@@ -114,7 +108,7 @@ function renderJournalEntries() {
 }
 
 // tied to Modal Save button
-let saveBtn = document.querySelector('gameForm')
+let saveBtn = document.querySelector('#gameForm')
 saveBtn.addEventListener('submit', createDataObject)
 
 //Add button to dropdown menu
