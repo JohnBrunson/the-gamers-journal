@@ -67,44 +67,55 @@ function createDataObject(event) {
         const error = document.querySelector('#error')
         error.textContent = "Please complete the required fields."
     }else {
-        const gameTitle = document.querySelector('#gameTitle');
-        const gameRating = document.querySelector('#gameRating');
-        const wins = document.querySelector('#wins');
-        const losses = document.querySelector('#losses');
+        const gameTitle = document.querySelector('#gameTitleModal');
+        const gameRating = document.querySelector('#gameRatingModal');
+        const date = document.querySelector("#dateModal");
+        const wins = document.querySelector('#winsModal');
+        const losses = document.querySelector('#lossesModal');
+        const rank = document.querySelector('#rankModal');
+
         let journalEntry = {
             gameTitle : gameTitle.value,
-            gameRating : rating.value,
+            gameRating : gameRating.value,
             wins : wins.value,
-            losses : losses.value
+            losses : losses.value,
+            rank : rank.value
         };
         setLocalStorage(journalEntry);
         return journalEntry;
     }
 }
 
-let saveBtn = document.querySelector('gameForm')
-saveBtn.addEventListener('submit', createDataObject)
+function renderJournalEntry(journalEntry) {
+    // const gameTitle = document.querySelector('#gameTitle');
+    // const gameRating = document.querySelector('#gameRating');
+    // gameTitle.value = journalEntry.gameTitle;
+    // gameRating = journalEntry.gameRating;
+    const entry = document.getElementById("journalEntries");
+    const div = document.createElement("div");
+    const gameTitle = document.createTextNode(journalEntry.gameTitle);
+    const gameRating = document.createTextNode(journalEntry.gameRating);
+    div.appendChild(gameTitle);
+    div.appendChild(gameRating);
+    entry.append(div);
+}
 
-//MP = Multiplayer (Competitve) -- Bowman
-// function createDataObject {
-// //     Name of Game
-// // Wins (Number)
-// // Losses (Number)
-// // Rank (String)
-// // Link to video (String)
-// // Observations text area. (Text Area)
-// }
-
-// rendering -- Leo
-
-function renderBlogPost() {
-    const numberOfJournals = getLocalStorage.length;
-    for (let i = 0; i > numberOfJournals; i++) {
-        const main = document.querySelector('main');
-        const recordDay = domAppend('div', main);
-        recordDay.setAttribute('id', 'recordDay');
+function renderJournalEntries() {
+    const journalEntries = getLocalStorage();
+    
+    if (dropdown.value === "default"){
+        console.log("no game selected");
+    }
+    for (let i = 0; i > journalEntries.length; i++) {
+        if (dropdown.value === journalEntries[i].gameTitle){
+            renderJournalEntry(journalEntries[i]);
+        }
     }
 }
+
+// tied to Modal Save button
+let saveBtn = document.querySelector('gameForm')
+saveBtn.addEventListener('submit', createDataObject)
 
 //Add button to dropdown menu
 const addGameBtn = document.querySelector('#add-game');
@@ -114,11 +125,16 @@ function addGame() {
     if (gameTitle.value !== "") {
         const dropdown = document.querySelector('#dropdown');
         const newGame = document.createElement('option');
+        const gameTitle = document.querySelector('#gameTitle')
         newGame.textContent = gameTitle.value;
         dropdown.appendChild(newGame);
         document.querySelector('#gameTitle').value = "";
+        return gameTitle;
     } else {
         alert("Please enter a game title.")
     }
 }
-    addGameBtn.addEventListener('click', addGame);
+addGameBtn.addEventListener('click', addGame);
+
+const dropdown = document.querySelector('#dropdown');
+dropdown.addEventListener('change', renderJournalEntries);
