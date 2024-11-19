@@ -106,11 +106,11 @@ function renderJournalEntry(journalEntry) {
     const article = domAppend('article', main);
     const date = domAppend('h2', article);
     date.textContent = "Date: " + journalEntry.date;
-    const winLoss = domAppend('h5', article);
+    const winLoss = domAppend('p', article);
     winLoss.textContent = "Wins/Loss: " + journalEntry.win + "/" + journalEntry.loss;
-    const rank = domAppend('h5', article);
+    const rank = domAppend('p', article);
     rank.textContent = "rank: " + journalEntry.rank;
-    const video = domAppend('h5', article);
+    const video = domAppend('p', article);
     video.textContent = "video: " + journalEntry.video;
     const comment = domAppend('p', article);
     comment.textContent = "comment: " + journalEntry.comment;
