@@ -128,6 +128,7 @@ function addGame() {
         alert("Please enter a game title.")
     }
 }
+
 addGameBtn.addEventListener('click', addGame);
 
 const dropdown = document.querySelector('#dropdown');
