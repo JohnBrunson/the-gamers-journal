@@ -2,17 +2,9 @@
 IMPORTANT: This Readme is very much a work in progress. We expect that it will be update periodically as changes are made.
 ## Description
 
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
-
-- What was your motivation?
-
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-
-- What problem does it solve?
-
-- What did you learn?
-
 Have you ever been in the middle of a game and you have to be a responsible adult and do responsible adult things? This product is for you. Are you a competitive gamer and want to have a cohesive record of your game play over time, perhaps with some video footage mixed in? The product is also for you!
+
+The biggest challenge in putting this piece together was learning to work as a team and learning how to communicate with that team. From a technical perspective, it teaches much about how to construct your data for later use, how to retrieve that data and how to use that data across a number of functions. Moreover, this also teaches about how to make sure that the right data is displayed at the right time.
 
 ## Table of Contents (Optional)
 
@@ -31,6 +23,13 @@ If your README is long, add a table of contents to make it easy for users to fin
 No installation required. This can be found by navigating to (insert finished github pages link here). Please note that any data is saved to your local storage. If you clear your cache, the data goes with it. 
 
 ## Usage
+- Navigate to (insert link here)
+- Click on Journal
+- Make an entry.
+- Click Save, then close
+
+To review entries already made:
+- Select the game title 
 
 Provide instructions and examples for use. Include screenshots as needed.
 
