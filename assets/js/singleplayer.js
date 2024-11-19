@@ -86,16 +86,17 @@ function createSPDataObject(event) {
 }
 
 function articleGarbageCleanup() {
-    const article = document.querySelector('article');
-    if (!article){
+    const blogposts = document.querySelectorAll('.blogpost');
+    if (blogposts.length === 0){
         console.log ("No Articles Found")
     }
     else{
-        article.remove();
+        blogposts.forEach(blogpost => {
+            blogpost.remove();
+        })
     }
 
 }
-// this doesn't clean up after itself
 //CSS doesn't stack correctly.
 function renderSPJournalEntries () {
     // effectively, a check needs to happen if an article is rendered. If there is, clean it up. If not, proceed.
@@ -119,14 +120,14 @@ function renderSPJournalEntries () {
         spGameRating.value = spMatchingEntries[0].rating;
     }
         spMatchingEntries.forEach(entry => {
-            const main = document.querySelector('main')
+            const journalEntriesSection = document.querySelector('#journal-entries');
             //setup a div Not used, but keeping this code in case automatically assigning an id is needed.
-           // const div = domAppend('div', main)
-            //div.classList.add('container', 'mb-4')
+           const div = domAppend('div', journalEntriesSection)
+            div.classList.add('container', 'blogpost')
             //assign div ID of blogentry + i
-           // div.setAttribute('id', `blogEntry${i}`)
-            //setup the article and append
-            const article = domAppend('article', main);
+            div.setAttribute('id', `blogEntry${i}`)
+            // setup the article and append
+            const article = domAppend('article', div);
             //setup the h2 and append to article. From a semantic standpoint, this could be argued to be date time. Not sure If I have enough time to hammer that out here... prior to deadline
             const h2 = domAppend('h2', article);
             h2.textContent = entry.date;
@@ -134,7 +135,7 @@ function renderSPJournalEntries () {
             const p = domAppend('p', article);
             p.textContent = entry.comments;
             //adding bootstrap container
-            article.classList.add('container', 'col-md-6')
+            article.classList.add('container')
         //IDEA: Maybe have everything attach to its own section, then hammer out how that should appear?
 
             })            
@@ -160,7 +161,7 @@ function addGame() {
         dropdown.appendChild(newGame);
         document.querySelector('#gameTitle').value = "";
         document.querySelector('#spGameTitle').value = "";
-        
+
         //JB Additions: Future development, perhaps or code cleanup.
         return spGameTitle;
     } else {
