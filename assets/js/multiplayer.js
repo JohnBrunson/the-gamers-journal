@@ -32,7 +32,7 @@ window.addEventListener("load", (event) => {
 })
 
 function getLocalStorage() {
-    let games = JSON.parse(localStorage.getItem('games'));
+    let games = JSON.parse(localStorage.getItem('mpGames'));
     if (!games) {
         console.log ("INFO: No Games Found, should return empty array.")
         return [];
@@ -41,11 +41,11 @@ function getLocalStorage() {
 }
 
 function setLocalStorage(game) {
-    let games = getLocalStorage();
+    let mpGames = getLocalStorage();
     //push new item to items
-    games.push(game);
+    mpGames.push(game);
     //save data to local storage after stringifying it.
-    localStorage.setItem('games', JSON.stringify(games));
+    localStorage.setItem('mpGames', JSON.stringify(mpGames));
 }
 
 function domAppend(el, parent) {
@@ -72,35 +72,53 @@ function createDataObject(event) {
         const wins = document.querySelector('#winsModal');
         const losses = document.querySelector('#lossesModal');
         const rank = document.querySelector('#rankModal');
+        const video = document.querySelector('#videoModal');
+        const comments = document.querySelector('#commentsModal');
 
         let journalEntry = {
             gameTitle : gameTitle.value,
             gameRating : gameRating.value,
+            date : date.value,
             wins : wins.value,
             losses : losses.value,
-            rank : rank.value
+            rank : rank.value,
+            video : video.value,
+            comments : comments.value
         };
         setLocalStorage(journalEntry);
         return journalEntry;
     }
 }
 
+function articleGarbageCleanup() {
+    const article = document.querySelector('article');
+    if (!article){
+        console.log ("No Articles Found")
+    }
+    else{
+        article.remove();
+    }
+}
+
 function renderJournalEntry(journalEntry) {
-    const section = document.getElementById("journalEntries");
-    const div = domAppend('div', section);
-    const gameTitle = domAppend('p', div);
-    gameTitle.textContent = journalEntry.gameTitle;
-    const gameRating = domAppend('p', div);
-    gameRating.textContent = journalEntry.gameRating;
+    const main = document.querySelector('main');
+    const article = domAppend('article', main);
+    const h2 = domAppend('h2', article);
+    h2.textContent = journalEntry.date;
+    console.log(journalEntry);
+    const p = domAppend('p', article);
+    p.textContent = journalEntry.comments;
+    article.classList.add('container', 'col-md-6');
 }
 
 function renderJournalEntries() {
+    articleGarbageCleanup();
     const journalEntries = getLocalStorage();
     
     if (dropdown.value === "default"){
         console.log("no game selected");
     }
-    for (let i = 0; i > journalEntries.length; i++) {
+    for (let i = 0; i < journalEntries.length; i++) {
         if (dropdown.value === journalEntries[i].gameTitle){
             renderJournalEntry(journalEntries[i]);
         }
